@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Next.js Build Outputs
+web/.next/
+web/out/
+web/build/
+web/dist/
+
+# Python Virtual Environments & Caches
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+ENV/
+.pytest_cache/
+runs/
+*.log
+
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+web/.env
+web/.env.local
+service/.env
+
+# YOLO & Large Model Weights (Keep out of git history, use Git LFS or external cloud storage)
+*.pt
+*.pth
+*.onnx
+*.engine
+service/models/*.pt
+!service/models/best.pt.example
+
+# OS Files
+.DS_Store
+Thumbs.db
+*.swp
