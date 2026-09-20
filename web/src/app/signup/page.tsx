@@ -67,7 +67,7 @@ export default function SignupPage() {
           <div className="inline-flex p-3 rounded-2xl bg-emerald-100 text-emerald-800 shadow-inner">
             <Sprout className="w-8 h-8" />
           </div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Create SIH Onion Account</h1>
+          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Create MH ONION Account</h1>
           <p className="text-sm text-slate-500">Select your role to start grading or direct trading</p>
         </div>
 

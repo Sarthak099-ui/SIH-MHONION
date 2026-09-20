@@ -111,10 +111,10 @@ export default function AdminDashboard() {
         <div className="space-y-2">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-900/60 text-purple-300 text-xs font-semibold border border-purple-700/50">
             <Lock className="w-3.5 h-3.5" />
-            <span>Cryptographic Row-Level Security (RLS) Ledger</span>
+            <span>MH ONION • Cryptographic Row-Level Security (RLS) Ledger</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-            Tamper-Evident System Audit Trail
+            MH ONION Tamper-Evident System Audit Trail
           </h1>
           <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
             All grading determinations, manual overrides, and trade listings are recorded with write-protection. Client insert policies are disabled in Postgres RLS, allowing only the backend microservice to append events.

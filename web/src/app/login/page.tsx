@@ -71,7 +71,7 @@ export default function LoginPage() {
           <div className="inline-flex p-3 rounded-2xl bg-emerald-100 text-emerald-800 shadow-inner">
             <Sprout className="w-8 h-8" />
           </div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Sign in to SIH Onion</h1>
+          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Sign in to MH ONION</h1>
           <p className="text-sm text-slate-500">AI Quality Inspection & Direct Farm-to-Trader Marketplace</p>
         </div>
 

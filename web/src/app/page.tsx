@@ -31,15 +31,15 @@ export default function HomePage() {
         <div className="max-w-5xl mx-auto relative z-10 text-center space-y-6">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-semibold backdrop-blur">
             <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            <span>AI Computer Vision • AGMARK/FSSAI Aligned • Direct Farm Trade</span>
+            <span>MH ONION • AI Computer Vision • AGMARK/FSSAI Aligned • Direct Farm Trade</span>
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-balance leading-tight">
-            Transparent Onion Quality Grading & Direct Farm-to-Trader Marketplace
+            MH ONION: Transparent Quality Grading & Direct Farm-to-Trader Marketplace
           </h1>
 
           <p className="max-w-2xl mx-auto text-base sm:text-lg text-emerald-100/80 leading-relaxed">
-            Eliminate human bias and middleman exploitation. Capture onion photos directly on your mobile device to receive an instant, tamper-evident digital quality certificate and sell directly to traders from home.
+            Eliminate human bias and middleman exploitation across Maharashtra. Capture onion photos on your mobile device to receive an instant, tamper-evident digital quality certificate and sell directly to traders from home.
           </p>
 
           <div className="pt-4 flex flex-wrap items-center justify-center gap-3.5">

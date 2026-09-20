@@ -74,9 +74,9 @@ export default function Navbar() {
             </div>
             <div>
               <span className="font-bold text-lg text-slate-900 tracking-tight flex items-center gap-1.5">
-                SIH Onion <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-semibold border border-emerald-300">AI Quality & Trade</span>
+                MH ONION <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-semibold border border-emerald-300">AI Quality & Trade</span>
               </span>
-              <p className="text-[10px] text-slate-500 font-medium leading-none">AGMARK-Aligned Grading & Direct e-Mandi</p>
+              <p className="text-[10px] text-slate-500 font-medium leading-none">Maharashtra AGMARK Grading & Direct e-Mandi</p>
             </div>
           </Link>
 

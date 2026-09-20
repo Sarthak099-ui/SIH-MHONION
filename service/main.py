@@ -13,8 +13,8 @@ from audit import log_audit_event, get_supabase_admin
 load_dotenv()
 
 app = FastAPI(
-    title="SIH Onion Quality Assessment & Grading API",
-    description="Automated AI onion defect detection, AGMARK/FSSAI rule-based grading, and tamper-evident audit trail.",
+    title="MH ONION Quality Assessment & Grading API",
+    description="Automated AI onion defect detection, AGMARK/FSSAI rule-based grading, and tamper-evident audit trail for Maharashtra APMC Mandis.",
     version="1.0.0"
 )
 
@@ -57,7 +57,7 @@ class AuditEventRequest(BaseModel):
 @app.get("/")
 def root():
     return {
-        "service": "SIH Onion AI Quality Assessment & Grading API",
+        "service": "MH ONION AI Quality Assessment & Grading API",
         "version": "1.0.0",
         "status": "online",
         "agmark_rules": "v1.0"

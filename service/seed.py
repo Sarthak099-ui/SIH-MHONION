@@ -1,5 +1,5 @@
 """
-SIH Onion Demo Data Seed Script (Milestone 8)
+MH ONION Demo Data Seed Script (Milestone 8)
 Creates:
 - 2 Farmers, 1 Grader, 1 Buyer profiles
 - 3 Sample lots:
@@ -17,7 +17,7 @@ from audit import get_supabase_admin, log_audit_event
 load_dotenv()
 
 def seed_demo_data():
-    print("[*] Starting SIH Onion Demo Data Seeding...")
+    print("[*] Starting MH ONION Demo Data Seeding...")
     admin = get_supabase_admin()
 
     # IDs
