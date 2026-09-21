@@ -12,8 +12,7 @@ import {
   AlertCircle, 
   Loader2, 
   ArrowRight,
-  RefreshCw,
-  Image as ImageIcon
+  RefreshCw
 } from 'lucide-react';
 
 export default function NewLotAssessmentPage() {
@@ -122,8 +121,8 @@ export default function NewLotAssessmentPage() {
         router.push(`/farmer/lots/${lotId}/report`);
       }, 700);
 
-    } catch (err: any) {
-      setErrorMsg(err.message || 'Error assessing lot. Please try again.');
+    } catch (err: unknown) {
+      setErrorMsg(err instanceof Error ? err.message : 'Error assessing lot. Please try again.');
       setUploading(false);
     }
   };

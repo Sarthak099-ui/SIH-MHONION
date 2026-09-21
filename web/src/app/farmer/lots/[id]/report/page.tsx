@@ -8,18 +8,12 @@ import {
   ShieldCheck, 
   MapPin, 
   CheckCircle2, 
-  AlertTriangle, 
   Store, 
   Download, 
   ArrowLeft,
   Info,
   Eye,
-  Sliders,
-  Sparkles,
-  Layers,
-  CircleAlert,
-  HelpCircle,
-  Tag
+  Sparkles
 } from 'lucide-react';
 import { GradeLabel } from '@/types/database';
 
@@ -33,7 +27,6 @@ export default function LotQualityReportPage() {
   const [quantityKg, setQuantityKg] = useState('500');
   const [pricePerKg, setPricePerKg] = useState('28.50');
   const [listedSuccess, setListedSuccess] = useState(false);
-  const [userRole, setUserRole] = useState<string>('farmer');
 
   // Realistic sample images
   const [previewImage, setPreviewImage] = useState<string>('/samples/onion_grade_a.jpg');
@@ -52,69 +45,77 @@ export default function LotQualityReportPage() {
     defect_count: 3
   });
 
+interface DefectPin {
+  id: number;
+  class: string;
+  label: string;
+  confidence: number;
+  x: number;
+  y: number;
+  note: string;
+}
+
   // Precise defect pinpoints mapped over real image
-  const [defectPins, setDefectPins] = useState<any[]>([
+  const [defectPins, setDefectPins] = useState<DefectPin[]>([
     { id: 1, class: 'sprouted', label: 'Sprouted Neck', confidence: 0.94, x: 48, y: 32, note: 'Early apical shoot (5mm)' },
     { id: 2, class: 'damaged', label: 'Surface Cut', confidence: 0.89, x: 74, y: 46, note: 'Mechanical harvester mark' },
     { id: 3, class: 'undersized', label: 'Undersized (<35mm)', confidence: 0.91, x: 23, y: 66, note: 'Caliber: 31mm' },
   ]);
 
   useEffect(() => {
-    // Read local demo role
-    const match = document.cookie.match(new RegExp('(^| )sih_demo_role=([^;]+)'));
-    if (match) setUserRole(match[2]);
+    queueMicrotask(() => {
+      const storedImg = sessionStorage.getItem(`lot_preview_${lotId}`);
+      if (storedImg) {
+        setPreviewImage(storedImg);
+      }
 
-    const storedImg = sessionStorage.getItem(`lot_preview_${lotId}`);
-    if (storedImg) {
-      setPreviewImage(storedImg);
-    }
+      const storedLoc = sessionStorage.getItem(`lot_location_${lotId}`);
+      if (storedLoc) setLocationText(storedLoc);
 
-    const storedLoc = sessionStorage.getItem(`lot_location_${lotId}`);
-    if (storedLoc) setLocationText(storedLoc);
-
-    // Calibrate based on lot type for realistic demo
-    if (lotId.includes('gradeB') || lotId.includes('bbbb') || lotId.includes('pune')) {
-      setGradeLabel('B');
-      if (!storedImg) setPreviewImage('/samples/onion_grade_b.jpg');
-      setDefectMetrics({
-        pct_healthy: 84.0,
-        pct_damaged: 6.0,
-        pct_rotten: 3.0,
-        pct_sprouted: 4.0,
-        pct_undersized: 3.0,
-        total_count: 38,
-        healthy_count: 32,
-        defect_count: 6
-      });
-      setDefectPins([
-        { id: 1, class: 'sprouted', label: 'Top Sprout (12mm)', confidence: 0.96, x: 47, y: 38, note: 'Emerging foliage shoot' },
-        { id: 2, class: 'sprouted', label: 'Neck Sprout (10mm)', confidence: 0.93, x: 67, y: 42, note: 'Green shoot growth' },
-        { id: 3, class: 'damaged', label: 'Bruised Outer Skin', confidence: 0.90, x: 33, y: 52, note: 'Skin rupture' },
-        { id: 4, class: 'rotten', label: 'Neck Rot Spot', confidence: 0.88, x: 76, y: 62, note: 'Localized fungal soft spot' },
-      ]);
-    } else if (lotId.includes('urs') || lotId.includes('cccc') || lotId.includes('reject')) {
-      setGradeLabel('URS');
-      if (!storedImg) setPreviewImage('/samples/onion_grade_urs.jpg');
-      setDefectMetrics({
-        pct_healthy: 68.0,
-        pct_damaged: 12.0,
-        pct_rotten: 8.0,
-        pct_sprouted: 6.0,
-        pct_undersized: 6.0,
-        total_count: 25,
-        healthy_count: 17,
-        defect_count: 8
-      });
-      setDefectPins([
-        { id: 1, class: 'rotten', label: 'Severe Mold / Black Rot', confidence: 0.98, x: 35, y: 44, note: 'Aspergillus / soft rot decay' },
-        { id: 2, class: 'rotten', label: 'Blue Mold Decay', confidence: 0.96, x: 70, y: 65, note: 'Penicillium decay' },
-        { id: 3, class: 'damaged', label: 'Deep Cleave / Split', confidence: 0.92, x: 58, y: 36, note: 'Internal tissue exposed' },
-        { id: 4, class: 'rotten', label: 'Rot Spot', confidence: 0.91, x: 22, y: 30, note: 'Soft decay' },
-      ]);
-    } else {
-      setGradeLabel('A');
-      if (!storedImg) setPreviewImage('/samples/onion_grade_a.jpg');
-    }
+      // Calibrate based on lot type for realistic demo
+      if (lotId.includes('gradeB') || lotId.includes('bbbb') || lotId.includes('pune')) {
+        setGradeLabel('B');
+        if (!storedImg) setPreviewImage('/samples/onion_grade_b.jpg');
+        setDefectMetrics({
+          pct_healthy: 84.0,
+          pct_damaged: 6.0,
+          pct_rotten: 3.0,
+          pct_sprouted: 4.0,
+          pct_undersized: 3.0,
+          total_count: 38,
+          healthy_count: 32,
+          defect_count: 6
+        });
+        setDefectPins([
+          { id: 1, class: 'sprouted', label: 'Top Sprout (12mm)', confidence: 0.96, x: 47, y: 38, note: 'Emerging foliage shoot' },
+          { id: 2, class: 'sprouted', label: 'Neck Sprout (10mm)', confidence: 0.93, x: 67, y: 42, note: 'Green shoot growth' },
+          { id: 3, class: 'damaged', label: 'Bruised Outer Skin', confidence: 0.90, x: 33, y: 52, note: 'Skin rupture' },
+          { id: 4, class: 'rotten', label: 'Neck Rot Spot', confidence: 0.88, x: 76, y: 62, note: 'Localized fungal soft spot' },
+        ]);
+      } else if (lotId.includes('urs') || lotId.includes('cccc') || lotId.includes('reject')) {
+        setGradeLabel('URS');
+        if (!storedImg) setPreviewImage('/samples/onion_grade_urs.jpg');
+        setDefectMetrics({
+          pct_healthy: 68.0,
+          pct_damaged: 12.0,
+          pct_rotten: 8.0,
+          pct_sprouted: 6.0,
+          pct_undersized: 6.0,
+          total_count: 25,
+          healthy_count: 17,
+          defect_count: 8
+        });
+        setDefectPins([
+          { id: 1, class: 'rotten', label: 'Severe Mold / Black Rot', confidence: 0.98, x: 35, y: 44, note: 'Aspergillus / soft rot decay' },
+          { id: 2, class: 'rotten', label: 'Blue Mold Decay', confidence: 0.96, x: 70, y: 65, note: 'Penicillium decay' },
+          { id: 3, class: 'damaged', label: 'Deep Cleave / Split', confidence: 0.92, x: 58, y: 36, note: 'Internal tissue exposed' },
+          { id: 4, class: 'rotten', label: 'Rot Spot', confidence: 0.91, x: 22, y: 30, note: 'Soft decay' },
+        ]);
+      } else {
+        setGradeLabel('A');
+        if (!storedImg) setPreviewImage('/samples/onion_grade_a.jpg');
+      }
+    });
   }, [lotId]);
 
   const handleCreateListing = (e: React.FormEvent) => {

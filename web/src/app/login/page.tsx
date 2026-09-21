@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Sprout, Lock, Mail, ArrowRight, ShieldCheck, User, Store, Shield } from 'lucide-react';
+import { Sprout, Lock, Mail, ArrowRight, ShieldCheck, Store, Shield } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { UserRole } from '@/types/database';
 

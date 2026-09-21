@@ -9,8 +9,6 @@ import {
   Filter, 
   Search, 
   ShieldCheck, 
-  Phone, 
-  ArrowRight, 
   CheckCircle2, 
   Sparkles,
   ShoppingBag,
@@ -74,14 +72,16 @@ export default function MarketplacePage() {
   ]);
 
   useEffect(() => {
-    // Check if user created custom listings in browser
-    const stored = localStorage.getItem('sih_custom_listings');
-    if (stored) {
-      try {
-        const custom = JSON.parse(stored);
-        setListings((prev) => [...custom, ...prev]);
-      } catch {}
-    }
+    queueMicrotask(() => {
+      // Check if user created custom listings in browser
+      const stored = localStorage.getItem('sih_custom_listings');
+      if (stored) {
+        try {
+          const custom = JSON.parse(stored);
+          setListings((prev) => [...custom, ...prev]);
+        } catch {}
+      }
+    });
   }, []);
 
   const filteredListings = listings.filter((item) => {

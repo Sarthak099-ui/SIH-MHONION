@@ -88,7 +88,7 @@ export interface AuditLog {
   action: string;
   entity_type: string;
   entity_id: string | null;
-  metadata: Record<string, any> | null;
+  metadata: Record<string, unknown> | null;
   created_at: string;
   user?: Profile;
 }

@@ -1,20 +1,14 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { 
   Camera, 
   Sprout, 
-  Store, 
   Award, 
   MapPin, 
   Plus, 
-  ChevronRight, 
-  CheckCircle2, 
-  Clock, 
-  TrendingUp,
-  Scale,
-  DollarSign
+  ChevronRight
 } from 'lucide-react';
 import { LotStatus, GradeLabel } from '@/types/database';
 
@@ -31,7 +25,7 @@ interface SampleLot {
 }
 
 export default function FarmerDashboard() {
-  const [lots, setLots] = useState<SampleLot[]>([
+  const [lots] = useState<SampleLot[]>([
     {
       id: 'lot-nashik-01',
       name: 'Nashik Red Onion (Winter Crop)',

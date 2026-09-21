@@ -2,22 +2,17 @@
 
 import React, { useState, useEffect } from 'react';
 import { 
-  Activity, 
-  ShieldCheck, 
   Lock, 
   Search, 
   Filter, 
   Terminal, 
-  CheckCircle2, 
   Clock, 
-  User, 
-  Layers,
   Database
 } from 'lucide-react';
 import { AuditLog } from '@/types/database';
 
 export default function AdminDashboard() {
-  const [logs, setLogs] = useState<any[]>([
+  const [logs, setLogs] = useState<AuditLog[]>([
     {
       id: 'aud-01',
       action: 'listing_created',

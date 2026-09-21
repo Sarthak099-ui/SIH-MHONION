@@ -5,13 +5,8 @@ import Link from 'next/link';
 import { 
   ShieldCheck, 
   Award, 
-  MapPin, 
   CheckCircle2, 
-  AlertTriangle, 
   Edit3, 
-  ExternalLink,
-  Search,
-  Filter,
   Eye
 } from 'lucide-react';
 import { GradeLabel } from '@/types/database';

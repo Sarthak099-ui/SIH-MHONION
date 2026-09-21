@@ -8,13 +8,10 @@ import {
   Camera, 
   Store, 
   ShieldCheck, 
-  User, 
   LogOut, 
   Menu, 
   X, 
-  ChevronDown,
-  Activity,
-  Layers
+  Activity
 } from 'lucide-react';
 import { UserRole } from '@/types/database';
 
@@ -26,19 +23,21 @@ export default function Navbar() {
   const [userName, setUserName] = useState<string>('Guest');
 
   useEffect(() => {
-    // Read local demo role cookie or state
-    const match = document.cookie.match(new RegExp('(^| )sih_demo_role=([^;]+)'));
-    if (match) {
-      setCurrentRole(match[2] as UserRole);
-      const nameMatch = document.cookie.match(new RegExp('(^| )sih_user_name=([^;]+)'));
-      if (nameMatch) setUserName(decodeURIComponent(nameMatch[2]));
-    } else {
-      // Default to farmer for instant demo if on farmer routes
-      if (pathname.startsWith('/farmer')) setCurrentRole('farmer');
-      else if (pathname.startsWith('/grader')) setCurrentRole('grader');
-      else if (pathname.startsWith('/buyer')) setCurrentRole('buyer');
-      else if (pathname.startsWith('/admin')) setCurrentRole('admin');
-    }
+    queueMicrotask(() => {
+      // Read local demo role cookie or state
+      const match = document.cookie.match(new RegExp('(^| )sih_demo_role=([^;]+)'));
+      if (match) {
+        setCurrentRole(match[2] as UserRole);
+        const nameMatch = document.cookie.match(new RegExp('(^| )sih_user_name=([^;]+)'));
+        if (nameMatch) setUserName(decodeURIComponent(nameMatch[2]));
+      } else {
+        // Default to farmer for instant demo if on farmer routes
+        if (pathname.startsWith('/farmer')) setCurrentRole('farmer');
+        else if (pathname.startsWith('/grader')) setCurrentRole('grader');
+        else if (pathname.startsWith('/buyer')) setCurrentRole('buyer');
+        else if (pathname.startsWith('/admin')) setCurrentRole('admin');
+      }
+    });
   }, [pathname]);
 
   const handleRoleSwitch = (role: UserRole, name: string) => {

@@ -8,11 +8,6 @@ import {
   Store, 
   Activity, 
   ArrowRight, 
-  CheckCircle2, 
-  Award, 
-  TrendingUp, 
-  Cpu, 
-  Scale,
   Sparkles,
   Lock
 } from 'lucide-react';
