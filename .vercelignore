@@ -1,0 +1,13 @@
+# Ignore non-web backend and AI training folders from Vercel serverless bundle
+service/
+supabase/
+.git/
+venv/
+.venv/
+__pycache__/
+*.pt
+*.onnx
+*.bin
+*.log
+.pytest_cache/
+runs/
